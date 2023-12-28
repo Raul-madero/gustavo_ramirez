@@ -8,7 +8,7 @@ from flask_migrate import Migrate
 def create_app():
     app = Flask(__name__)
     CORS(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:2603@localhost:3306/gustavoramirez"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://default:osiD76hrueqw@ep-shiny-grass-37370879.us-east-1.postgres.vercel-storage.com:5432/verceldb"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
     return app
