@@ -24,13 +24,20 @@ def get_clientes():
         (Clientes.razonsocial.ilike(f'%{search_term}%') |
         Clientes.rfc.ilike(f'%{search_term}%'))
         ).paginate(page=page, per_page=per_page))
-
     lista = [{'id': cliente.id, 'razonsocial': cliente.razonsocial, 'rfc': cliente.rfc, 'contacto': cliente.contacto, 'girocomercial': cliente.girocomercial, 'idcolaborador': cliente.idcolaborador} for cliente in clientes_pagination]
     return jsonify({'clientes': lista, 
                     'total_pages': clientes_pagination.pages,
                     'current_page': clientes_pagination.page,
                     'total_items': clientes_pagination.total
                     })
+
+
+@app.route('/api/clientes/<int:cliente_id>', methods=['DELETE'])
+def delete_cliente(cliente_id):
+    cliente = Clientes.query.get_or_404(cliente_id)
+    db.session.delete(cliente)
+    db.session.commit()
+    return jsonify({'message': 'Cliente eliminado correctamente'})
 
 migrate = Migrate(app, db)
 

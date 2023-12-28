@@ -7,7 +7,13 @@ export const clientesApi = createApi({
         get_clientes: builder.query({
             query: (tabla) => `${tabla}`,
         }),
+        delete_cliente: builder.mutation({
+            mutation: (cliente_id) => ({
+                url: `clientes/${cliente_id}`,
+                method: 'DELETE'
+            })
+        })
     })
 })
 
-export const { useGet_clientesQuery, useGet_clienteQuery } = clientesApi
+export const { useGet_clientesQuery, useDelete_clienteMutation } = clientesApi
