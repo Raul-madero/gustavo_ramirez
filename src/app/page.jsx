@@ -1,11 +1,11 @@
 import '../sass/app.scss';
-import Header from './component/Header'
-import Jumbotron from './component/Jumbotron';
-import Descripciones from './component/Descripciones';
-import Resumen from './component/Resumen';
-import ServiciosCards from './component/ServiciosCards';
-import Temas from './component/Temas';
-import Footer from './component/Footer';
+import Header from './components/Header'
+import Jumbotron from './components/Jumbotron';
+import Descripciones from './components/Descripciones';
+import Resumen from './components/Resumen';
+import ServiciosCards from './components/ServiciosCards';
+import Temas from './components/Temas';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (

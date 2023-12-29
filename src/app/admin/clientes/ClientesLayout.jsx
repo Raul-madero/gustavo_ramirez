@@ -18,6 +18,7 @@ const ClientesLayout = () => {
             cliente.razonsocial.toLowerCase().includes(searchTerm.toLowerCase()) ||
             cliente.rfc.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    console.log(clientes)
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage)
     }
@@ -53,7 +54,7 @@ const ClientesLayout = () => {
         <Container className="my-3">
             <h1 className="text-center">Clientes</h1>
             <Container className="d-grid gap-2">
-                <Button variant="outline-success">Crear Nuevo Cliente</Button>
+                <Button href="/admin/clientes/nuevo" variant="outline-success">Crear Nuevo Cliente</Button>
             </Container>
             <Container className="my-2 border border-gray rounded-2 d-flex justify-content-between align-items-center p-2 w-50">
                 <input value={searchTerm} onChange={(e) => {
@@ -87,7 +88,7 @@ const ClientesLayout = () => {
                                     <Button onClick={() => handleDelete(cliente)} variant="danger" className="ms-2">
                                         <FontAwesomeIcon icon={faTrash}/>
                                     </Button>
-                                    <Button variant="primary" className="ms-2">
+                                    <Button onClick={(e) => console.log(e)} variant="primary" className="ms-2">
                                         <FontAwesomeIcon icon={faEdit}/>
                                     </Button>
                                     <Button variant="info" className="ms-2">

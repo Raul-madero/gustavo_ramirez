@@ -1,7 +1,7 @@
 'use client'
 
-import Footer from "@/app/component/Footer"
-import Header from "@/app/component/Header"
+import Footer from "@/app/components/Footer"
+import Header from "@/app/components/Header"
 import ClientesLayout from "./ClientesLayout"
 import StoreProvider from "@/app/StoreProvider"
 
