@@ -88,10 +88,10 @@ const ClientesLayout = () => {
                                     <Button onClick={() => handleDelete(cliente)} variant="danger" className="ms-2">
                                         <FontAwesomeIcon icon={faTrash}/>
                                     </Button>
-                                    <Button onClick={(e) => console.log(e)} variant="primary" className="ms-2">
+                                    <Button href={`/admin/clientes/nuevo?id=${cliente.id}`} variant="primary" className="ms-2">
                                         <FontAwesomeIcon icon={faEdit}/>
                                     </Button>
-                                    <Button variant="info" className="ms-2">
+                                    <Button href={`/admin/clientes/documentos?id=${cliente.id}`} variant="info" className="ms-2">
                                         <FontAwesomeIcon icon={faFileText}/>
                                     </Button>
                                 </td>
