@@ -48,3 +48,12 @@ class Usuarios(Base):
 
     def __repr__(self):
         return '<Usuarios %r>' % self.nombre
+    
+class Colaboradores(Base):
+    __tablename__ = 'colaboradores'
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String(45), nullable=False)
+    apellido = Column(String(45), nullable=False)
+
+    def __repr__(self):
+        return '<Colaboradores %r>' % self.nombre
