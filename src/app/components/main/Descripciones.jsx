@@ -1,10 +1,10 @@
 'use client'
 import React from "react"
-import Cards from "./Cards"
+import Cards from "../Cards"
 import { Col, Container, Row } from "react-bootstrap"
-import precio from "../../img/precio.jpg"
-import profesional from "../../img/profesional.jpg"
-import contabilidad from "../../img/contabilidad.jpg"
+import precio from "../../../img/precio.jpg"
+import profesional from "../../../img/profesional.jpg"
+import contabilidad from "../../../img/contabilidad.jpg"
 
 
 const Descripciones = () => {

@@ -1,10 +1,10 @@
 'use client'
 
 const { Card, CardBody, CardTitle, Container } = require("react-bootstrap")
-import facturacion from "../../img/facturacion.jpg"
-import auditoria from "../../img/auditoria.jpg"
-import declaracion from "../../img/declaraciones.jpg"
-import calculo from "../../img/calculo.png"
+import facturacion from "../../../img/facturacion.jpg"
+import auditoria from "../../../img/auditoria.jpg"
+import declaracion from "../../../img/declaraciones.jpg"
+import calculo from "../../../img/calculo.png"
 import Image from "next/image"
 import { Col, Row } from "react-bootstrap"
 

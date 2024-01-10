@@ -1,7 +1,7 @@
 import {Montserrat} from 'next/font/google'
 import '../sass/app.scss'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/ui/Header'
+import Footer from './components/ui/Footer'
 
 const montserrat = Montserrat({ 
   weight: ['400', '700'],

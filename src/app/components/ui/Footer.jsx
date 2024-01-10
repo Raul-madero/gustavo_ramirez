@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { Row, Container, Col } from "react-bootstrap"
-import logo from "../../img/logo.svg"
+import logo from "../../../img/logo.svg"
 import Image from "next/image"
-import whatsapp from "../../img/whatsapp.svg"
+import whatsapp from "../../../img/whatsapp.svg"
 
 const Footer = () => {
     return (

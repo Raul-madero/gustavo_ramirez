@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Container, Carousel, CarouselCaption, CarouselItem } from "react-bootstrap"
-import blog from "../../img/construir.jpg"
-import importacion from "../../img/importaciones.jpg"
+import blog from "../../../img/construir.jpg"
+import importacion from "../../../img/importaciones.jpg"
 
 const Temas = () => {
     return (

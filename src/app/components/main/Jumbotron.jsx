@@ -9,7 +9,7 @@ const playfair = Playfair_Display({
 
 const Jumbotron = () => {
     return (
-        <main className="jumbotron container-xl position-relative p-0 d-flex justify-content-center align-items-center">
+        <main className="jumbotron container-lg position-relative p-0 d-flex justify-content-center align-items-center">
             <div className="position-absolute bg-dark opacity-25 w-100 h-100 m-0"></div>
             <Container className="d-flex flex-column align-items-center justify-content-center p-0 z-3">
                 <h1 className="fs-1 w-50 text-center text-light my-5" style={playfair.style}>Servicios de Contabilidad General</h1>

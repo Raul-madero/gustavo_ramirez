@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Container, Nav, NavLink, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from "react-bootstrap";
 import Image from "next/image";
-import logo from '../../img/logo.svg'
+import logo from '../../../img/logo.svg'
 
 const Header = () => {
     const [autenticado, setAutenticado] = useState(false)

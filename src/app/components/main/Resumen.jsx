@@ -1,6 +1,6 @@
 import React from "react";
 import { CardBody, CardImg, CardText, CardTitle, Container } from "react-bootstrap";
-import resumen from "../../img/quienesSomos.jpg"
+import resumen from "../../../img/quienesSomos.jpg"
 
 const Resumen = () => {
     console.log(resumen)
