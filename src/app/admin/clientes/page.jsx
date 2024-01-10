@@ -1,17 +1,13 @@
 'use client'
 
-import Footer from "@/app/components/Footer"
-import Header from "@/app/components/Header"
-import ClientesLayout from "./ClientesLayout"
 import StoreProvider from "@/app/StoreProvider"
+import ListaClientes from "@/app/components/ListaClientes"
 
 const Clientes = () => {
     
     return (
         <StoreProvider>
-            <Header />
-            <ClientesLayout />
-            <Footer />
+            <ListaClientes />
         </StoreProvider>
     )
 }

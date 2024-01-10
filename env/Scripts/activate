@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\rmade\Documents\proyectos\react\gustavoramirez\env"
+VIRTUAL_ENV="C:\Users\rmade\Documents\proyectos\react\gustavo_ramirez\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,18 +1,12 @@
 'use client'
-
+import StoreProvider from "@/app/StoreProvider"
 import FormularioDocumentos from "@/app/components/FormularioDocumentos"
-
-const { default: StoreProvider } = require("@/app/StoreProvider")
-const { default: Footer } = require("@/app/components/Footer")
-const { default: Header } = require("@/app/components/Header")
 
 const Documentos = () => {
     return (
-        <StoreProvider>
-            <Header />
+    <StoreProvider>
             <FormularioDocumentos />
-            <Footer />
-        </StoreProvider>
+    </StoreProvider>
     )
 }
 

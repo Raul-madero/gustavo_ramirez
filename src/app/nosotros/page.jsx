@@ -1,15 +1,7 @@
-import Footer from "../components/Footer"
-import Header from "../components/Header"
 import LayoutNosotros from "./LayoutNosotros"
 
 const Nosotros = () => {
-    return(
-        <>
-            <Header />
-            <LayoutNosotros />
-            <Footer/>
-        </>
-    )
+    return  <LayoutNosotros />
 }
 
 export default Nosotros

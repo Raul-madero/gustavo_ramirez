@@ -1,14 +1,24 @@
 from flask import Flask
 from flask import jsonify, request
 from flask_cors import CORS
-from db import db
+from db import db   
 from models import Clientes
 from flask_migrate import Migrate
+from dotenv import load_dotenv
+load_dotenv()
+import os
+
+host = os.getenv("DB_HOST")
+user = os.getenv("DB_USERNAME")
+psswd = os.getenv("DB_PASSWORD")
+port = os.getenv("DB_PORT")
+database = os.getenv("DB_NAME")
+
 
 def create_app():
     app = Flask(__name__)
     CORS(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:2603@localhost:3306/gustavoramirez"
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://{user}:{psswd}@{host}:{port}/{database}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
     return app
