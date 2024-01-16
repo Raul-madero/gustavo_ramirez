@@ -16,6 +16,6 @@ pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 CORS(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://{user}:{psswd}@{host}:{port}/{database}"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://{user}:{psswd}@{host}:3306/{database}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)

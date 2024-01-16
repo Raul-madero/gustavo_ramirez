@@ -4,7 +4,7 @@ import Resumen from './components/main/Resumen';
 import ServiciosCards from './components/main/ServiciosCards';
 import Temas from './components/main/Temas';
 
-export default function Home() {
+export default function Home({children}) {
   return (
     <>
       <Jumbotron/>

@@ -1,27 +1,23 @@
-import {Montserrat} from 'next/font/google'
+'use client'
 import '../sass/app.scss'
 import Header from './components/ui/Header'
 import Footer from './components/ui/Footer'
+import { Provider } from 'react-redux'
+import store from '@/lib/store'
 
-const montserrat = Montserrat({ 
-  weight: ['400', '700'],
-  subsets: ['latin'] 
-})
 
-export const metadata = {
-  title: 'Gustavo Ramirez',
-  description: 'Contadores publicos',
-}
 
 export default function RootLayout({
   children,
 }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        <Header />
-        {children}
-        <Footer />
+      <body>
+        <Provider store={store}>
+          <Header />
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   )

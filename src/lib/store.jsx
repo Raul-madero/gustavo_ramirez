@@ -1,12 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit"
-import { clientesApi } from "./services/clientes"
+import clientesReducer from "./services/clientesSlice";
 
-export const makeStore = () => {
-    return configureStore({
-        reducer: {
-            [clientesApi.reducerPath]: clientesApi.reducer,
-        },
-        middleware: (getDefaultMiddleware) => 
-            getDefaultMiddleware().concat(clientesApi.middleware)
-    })
-}
+const { configureStore } = require("@reduxjs/toolkit");
+
+
+const store = configureStore({
+    reducer: {
+        clientes: clientesReducer
+    }
+})
+
+export default store

@@ -39,7 +39,7 @@ def get_clientes():
                     'total_pages': clientes_pagination.pages,
                     'current_page': clientes_pagination.page,
                     'total_items': clientes_pagination.total
-                    })
+                    }), 200
 
 
 @app.route('/api/clientes/<int:cliente_id>', methods=['DELETE'])
@@ -47,7 +47,14 @@ def delete_cliente(cliente_id):
     cliente = Clientes.query.get_or_404(cliente_id)
     db.session.delete(cliente)
     db.session.commit()
-    return jsonify({'message': 'Cliente eliminado correctamente'})
+    return jsonify({'message': 'Cliente eliminado correctamente'}), 204
+
+@app.route('/api/clientes', methods=['POST'])
+def crear_cliente(razonsocial, rfc, contacto, girocomercial, idcolaborador):
+    cliente = Clientes(razonsocial=razonsocial, rfc=rfc, contacto=contacto, girocomercial=girocomercial, idcolaborador=idcolaborador)
+    db.session.add(cliente)
+    db.session.commit()
+    return jsonify({'message': 'El usuario se ha creado correctamente'}), 201
 
 migrate = Migrate(app, db)
 
