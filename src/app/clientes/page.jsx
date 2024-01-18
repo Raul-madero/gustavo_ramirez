@@ -2,13 +2,9 @@
 
 import Interfaz from "../components/Interfaz"
 
-const { default: StoreProvider } = require("../StoreProvider")
-
 const Clientes = () => {
     return (
-        <StoreProvider>
             <Interfaz />
-        </StoreProvider>
     )
 }
 
