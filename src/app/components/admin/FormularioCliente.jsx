@@ -1,19 +1,34 @@
 import { nuevoCliente } from "@/lib/services/clientesSlice"
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
-const { Form, FormGroup, FormLabel, FormControl, Container, FormSelect, Button } = require("react-bootstrap")
+const { Form, FormGroup, FormLabel, FormControl, Container, FormSelect, Button, Modal, ModalTitle, ModalHeader, ModalBody } = require("react-bootstrap")
 
 const FormularioCliente = () => {
     const dispatch = useDispatch()
+    const {finalizado} = useSelector(state => state.clientes)
     const [razonSocial, setRazonSocial] = useState('')
     const [rfc, setRfc] = useState('')
     const [contacto, setContacto] = useState('')
     const [giroComercial, setGiroComercial] = useState('')
     const [encargado, setEncargado] = useState(1)
-
+    const [show, setShow] = useState(false)
+    const datos = {
+        razonsocial: razonSocial,
+        rfc: rfc,
+        contacto: contacto,
+        giroComercial: giroComercial,
+        colaboradorid: encargado
+    }
+    const handleClose = () => setShow(false)
     const handleOnClick = () => {
-        dispatch(nuevoCliente(razonSocial, rfc, contacto, giroComercial, encargado))
+        dispatch(nuevoCliente(datos))
+        setShow(true)
+        setContacto('')
+        setRfc('')
+        setGiroComercial('')
+        setRazonSocial('')
     }
     
     return (
@@ -48,6 +63,20 @@ const FormularioCliente = () => {
                     <Button variant="outline-primary" href="/admin/clientes">Volver</Button>
                 </Container>
             </Form>
+            <Modal 
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                
+            >
+                <ModalHeader className="bg-info" closeButton>
+                    <ModalTitle>Cliente creado correctamente</ModalTitle>
+                </ModalHeader>
+                <ModalBody className="bg-info">
+                    <Button variant="outline-primary" onClick={handleClose}>Volver</Button>
+                </ModalBody>
+            </Modal>
         </Container>
     )
 }

@@ -14,6 +14,13 @@ const ListaClientes = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [show, setShow] = useState(false);
     const [selected, setSelected] = useState({})
+    const [eliminado, setEliminado] = useState(false)
+    const handleConfirmDelete = (id) => {
+        setShow(false)
+        dispatch(deleteCliente(id))
+        dispatch(getClientes())
+        setEliminado(true)
+    }
     useEffect(() => {
         dispatch(getClientes())
     }, [])
@@ -46,13 +53,10 @@ const ListaClientes = () => {
         setShow(true)
     }
     const handleClose = () => setShow(false);
-    const handleConfirmDelete = (id) => {
-        setShow(false)
-        dispatch(deleteCliente(id))
-    }
     return (
         <Container className="my-3">
             <h1 className="text-center">Clientes</h1>
+            {eliminado ? <div className="w-50 mx-auto bg-danger text-light text-center fs-2 my-3">Cliente eliminado correctamente</div> : <></>}
             <Container className="d-grid gap-2">
                 <Button href="/admin/clientes/nuevo" variant="outline-success">Crear Nuevo Cliente</Button>
             </Container>

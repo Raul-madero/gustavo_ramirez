@@ -1,11 +1,13 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
+const dbUrl = "http://127.0.0.1:5000"
 
 const initialState = {
     data: [],
     status: 'loading',
     page: 1,
-    totalPages: null
+    totalPages: null,
+    finalizado: false 
 }
 
 const clientesSlice = createSlice({
@@ -28,7 +30,9 @@ const clientesSlice = createSlice({
         })
         .addCase(nuevoCliente.fulfilled, (state, action) => {
             state.data = action.payload
+            state.finalizado = true
         })
+        .addCase(deleteCliente.fulfilled, (state) => state.finalizado = true)
     }
 })
 
@@ -37,45 +41,39 @@ export const { fetchClientes } = clientesSlice.actions
 export default clientesSlice.reducer
 
 export const searchCliente = createAsyncThunk('clientes/get', async (searchParam) => {
-    const data = await fetch(`http://127.0.0.1:5000/api/clientes?search=${searchParam}&page=1`)
+    const data = await fetch(`${dbUrl}/api/clientes?search=${searchParam}&page=1`)
     const res = await data.json()
     return res
 })
 
 export const getClientes = createAsyncThunk('clientes/get', async () => {
-    const data = await fetch(`http://127.0.0.1:5000/api/clientes`)
+    const data = await fetch(`${dbUrl}/api/clientes`)
     const res = await data.json()
     return res
 })
 
 export const pagination = createAsyncThunk('clientes/get', async (page) => {
-    const data = await fetch(`http://127.0.0.1:5000/api/clientes?page=${page}`)
+    const data = await fetch(`${dbUrl}/api/clientes?page=${page}`)
     const res = await data.json()
     return res
 })
 
 export const deleteCliente = createAsyncThunk('clientes/<int:cliente_id>/delete', async (id) => {
-    const data = await fetch(`http://127.0.0.1:5000/api/clientes/${id}`, {
+    const data = await fetch(`${dbUrl}/api/clientes/${id}`, {
         method: 'DELETE'
     })
     const res = await data.json()
     return res
 })
 
-export const nuevoCliente = createAsyncThunk('clientes/post', async (razonSocial, rfc, contacto, giroComercial, encargado) => {
-    const data = await fetch('http://127.0.0.1:5000/api/clientes', {
+export const nuevoCliente = createAsyncThunk('clientes/post', async (datos) => {
+    const data = await fetch(`${dbUrl}/api/clientes`, {
         method: 'POST',
-        body: JSON.stringify({
-            razonSocial: razonSocial,
-            rfc: rfc,
-            contacto: contacto,
-            girocomercial: giroComercial,
-            idcolaborador: encargado
-        }),
+        body: JSON.stringify(datos),
         headers: {
             "Content-Type": "application/json"
         }
     })
-    const res = data.json()
+    const res = await data.json()
     return res
 })

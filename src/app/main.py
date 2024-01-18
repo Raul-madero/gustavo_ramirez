@@ -1,29 +1,7 @@
-from flask import Flask
 from flask import jsonify, request
-from flask_cors import CORS
-from db import db   
+from db import app, db   
 from models import Clientes
 from flask_migrate import Migrate
-from dotenv import load_dotenv
-load_dotenv()
-import os
-
-host = os.getenv("DB_HOST")
-user = os.getenv("DB_USERNAME")
-psswd = os.getenv("DB_PASSWORD")
-port = os.getenv("DB_PORT")
-database = os.getenv("DB_NAME")
-
-
-def create_app():
-    app = Flask(__name__)
-    CORS(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://{user}:{psswd}@{host}:{port}/{database}"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    db.init_app(app)
-    return app
-
-app = create_app()
 
 @app.route('/api/clientes', methods=['GET'])
 def get_clientes():
@@ -50,11 +28,14 @@ def delete_cliente(cliente_id):
     return jsonify({'message': 'Cliente eliminado correctamente'}), 204
 
 @app.route('/api/clientes', methods=['POST'])
-def crear_cliente(razonsocial, rfc, contacto, girocomercial, idcolaborador):
-    cliente = Clientes(razonsocial=razonsocial, rfc=rfc, contacto=contacto, girocomercial=girocomercial, idcolaborador=idcolaborador)
-    db.session.add(cliente)
+def crear_cliente():
+    cliente = request.get_json()
+    
+    nuevo_cliente = Clientes(razonsocial=cliente['razonsocial'], rfc=cliente['rfc'], contacto=cliente['contacto'], girocomercial=cliente['giroComercial'], idcolaborador=cliente['colaboradorid'])
+    db.session.add(nuevo_cliente)
     db.session.commit()
-    return jsonify({'message': 'El usuario se ha creado correctamente'}), 201
+    print(cliente)
+    return jsonify(cliente), 201
 
 migrate = Migrate(app, db)
 
