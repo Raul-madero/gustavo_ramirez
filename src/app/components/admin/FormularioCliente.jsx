@@ -1,6 +1,7 @@
-import { nuevoCliente } from "@/lib/services/clientesSlice"
+import { editarCliente, nuevoCliente, obtenerCliente } from "@/lib/services/clientesSlice"
 import { useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
 const { Form, FormGroup, FormLabel, FormControl, Container, FormSelect, Button, Modal, ModalTitle, ModalHeader, ModalBody } = require("react-bootstrap")
@@ -8,23 +9,32 @@ const { Form, FormGroup, FormLabel, FormControl, Container, FormSelect, Button, 
 const FormularioCliente = () => {
     const dispatch = useDispatch()
     const searchParams = useSearchParams()
-    const id = searchParams.get('id')
-    const [razonSocial, setRazonSocial] = useState('')
-    const [rfc, setRfc] = useState('')
-    const [contacto, setContacto] = useState('')
-    const [giroComercial, setGiroComercial] = useState('')
+    const { cliente } = useSelector(state => state.clientes)
+    const id = parseInt(searchParams.get('id'))
+    const [razonSocial, setRazonSocial] = useState(cliente.razonsocial || '')
+    const [rfc, setRfc] = useState(cliente.rfc || '')
+    const [contacto, setContacto] = useState(cliente.contacto || '')
+    const [giroComercial, setGiroComercial] = useState(cliente.girocomercial ||'')
     const [encargado, setEncargado] = useState(1)
     const [show, setShow] = useState(false)
     const datos = {
+        id: cliente.id || null,
         razonsocial: razonSocial,
         rfc: rfc,
         contacto: contacto,
         giroComercial: giroComercial,
         colaboradorid: encargado
     }
+    useEffect(() => {
+        if(id) {
+            dispatch(obtenerCliente(id))
+        }
+    }, [])
+    
     const handleClose = () => setShow(false)
     const handleOnClick = () => {
-        dispatch(nuevoCliente(datos))
+        datos.id ? dispatch(editarCliente(datos)) : dispatch(nuevoCliente(datos))
+        
         setShow(true)
         setContacto('')
         setRfc('')
@@ -72,7 +82,7 @@ const FormularioCliente = () => {
                 
             >
                 <ModalHeader className="bg-info" closeButton>
-                    <ModalTitle>Cliente creado correctamente</ModalTitle>
+                    <ModalTitle>{cliente.id ? 'Cliente actualizado correctamente' : 'Cliente creado correctamente'}</ModalTitle>
                 </ModalHeader>
                 <ModalBody className="bg-info">
                     <Button variant="outline-primary" onClick={handleClose}>Volver</Button>

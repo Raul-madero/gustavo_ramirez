@@ -21,11 +21,22 @@ def get_clientes():
 
 
 @app.route('/api/clientes/<int:cliente_id>', methods=['DELETE', 'GET', 'PUT'])
-def delete_cliente(cliente_id):
+def buscar_clientes(cliente_id):
     cliente = Clientes.query.get_or_404(cliente_id)
-    db.session.delete(cliente)
-    db.session.commit()
-    return jsonify({'message': 'Cliente eliminado correctamente'}), 204
+    if request.method == 'DELETE':
+        db.session.delete(cliente)
+        db.session.commit()
+        return jsonify({'message': 'Cliente eliminado correctamente'}), 204
+    if request.method == 'GET':
+        cliente_editable = {'id': cliente.id, 'razonsocial': cliente.razonsocial, 'rfc': cliente.rfc, 'contacto': cliente.contacto, 'girocomercial': cliente.girocomercial, 'idcolaborador': cliente.idcolaborador}
+        return jsonify(cliente_editable), 200
+    if request.method == 'PUT':
+        editar = request.get_json()
+        cliente.razonsocial = editar.razonsocial
+        cliente.rfc = editar.rfc
+        cliente.contacto = editar.contacto
+        cliente.girocomercial = editar.girocomercial
+        db.session.commit()
 
 @app.route('/api/clientes', methods=['POST'])
 def crear_cliente():
