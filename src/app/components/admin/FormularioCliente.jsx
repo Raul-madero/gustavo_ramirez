@@ -1,13 +1,14 @@
 import { nuevoCliente } from "@/lib/services/clientesSlice"
+import { useSearchParams } from "next/navigation"
 import { useState } from "react"
-import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
 const { Form, FormGroup, FormLabel, FormControl, Container, FormSelect, Button, Modal, ModalTitle, ModalHeader, ModalBody } = require("react-bootstrap")
 
 const FormularioCliente = () => {
     const dispatch = useDispatch()
-    const {finalizado} = useSelector(state => state.clientes)
+    const searchParams = useSearchParams()
+    const id = searchParams.get('id')
     const [razonSocial, setRazonSocial] = useState('')
     const [rfc, setRfc] = useState('')
     const [contacto, setContacto] = useState('')

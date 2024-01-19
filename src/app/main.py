@@ -20,7 +20,7 @@ def get_clientes():
                     }), 200
 
 
-@app.route('/api/clientes/<int:cliente_id>', methods=['DELETE'])
+@app.route('/api/clientes/<int:cliente_id>', methods=['DELETE', 'GET', 'PUT'])
 def delete_cliente(cliente_id):
     cliente = Clientes.query.get_or_404(cliente_id)
     db.session.delete(cliente)
