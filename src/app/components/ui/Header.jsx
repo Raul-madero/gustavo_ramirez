@@ -14,7 +14,7 @@ const Header = () => {
                 <NavbarCollapse id="basic-navbar-bar">
                     <Nav className="me-auto">
                         <NavLink className="text-light" href="/nosotros">Nosotros</NavLink>
-                        <NavLink className="text-light" href="/blog">Blog</NavLink>
+                        {/* <NavLink className="text-light" href="/blog">Blog</NavLink> */}
                         <NavLink className="text-light" href="/contacto">Contacto</NavLink>
                         {autenticado ? 
                         <NavLink className="text-light" href="/logout" onClick={() => setAutenticado(false)}>Cerrar Sesion</NavLink> : 

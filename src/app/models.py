@@ -15,7 +15,14 @@ class Colaboradores(db.Model):
     apellido = db.Column(db.String(45), nullable=False)
 
     def __repr__(self):
-        return '<Usuarios %r>' % self.nombre
+        return '<Colaboradores %r>' % self.nombre
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "apellido": self.apellido
+        }
 
 class Clientes(db.Model):
     __tablename__ = 'clientes'
@@ -30,6 +37,16 @@ class Clientes(db.Model):
     def __repr__(self):
         return "<Clientes %r>" % self.razonsocial
     
+    def serialize(self):
+        return {
+            "id": self.id,
+            "razonsocial": self.razonsocial,
+            "rfc": self.rfc,
+            "contacto": self.contacto,
+            "girocomercial": self.girocomercial,
+            "idcolaborador": self.idcolaborador
+        }
+    
 class Usuarios(Base):
     __tablename__ = 'usuarios'
     id = Column(Integer, primary_key=True)
@@ -38,16 +55,23 @@ class Usuarios(Base):
     correo = Column(String(60), nullable=True, unique=True)
     password = Column(String(60), nullable=True)
     telefono = Column(String(10), nullable=True)
-    clienteid = Column(Integer, ForeignKey('clientes.id'))
-    cliente = relationship(Clientes)
-    colaboradorid = Column(Integer, ForeignKey('colaboradores.id'))
-    colaborador = relationship(Colaboradores)
     admin = Column(BOOLEAN, nullable=True)
     verificado = Column(BOOLEAN, nullable=True)
     token = Column(String(35), nullable=True)
 
     def __repr__(self):
         return '<Usuarios %r>' % self.nombre
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "rfc": self.rfc,
+            "correo": self.correo,
+            "telefono": self.telefono,
+            "admin": self.admin,
+            "verificado": self.verificado
+        }
     
 class Colaboradores(Base):
     __tablename__ = 'colaboradores'
@@ -57,3 +81,10 @@ class Colaboradores(Base):
 
     def __repr__(self):
         return '<Colaboradores %r>' % self.nombre
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "apellido": self.apellido
+        }
