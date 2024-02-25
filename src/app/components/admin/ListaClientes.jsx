@@ -21,7 +21,7 @@ const ListaClientes = () => {
         dispatch(getClientes())
         setEliminado(true)
     }
-    console.log(process.env.BACKEND_URL)
+    console.log(clientes)
     useEffect(() => {
         dispatch(getClientes())
     }, [])

@@ -11,7 +11,6 @@ def get_add_clientes():
         nuevo_cliente = Clientes(razonsocial=cliente['razonsocial'], rfc=cliente['rfc'], contacto=cliente['contacto'], girocomercial=cliente['giroComercial'])
         db.session.add(nuevo_cliente)
         db.session.commit()
-        print(cliente)
         return jsonify(cliente), 201
     page = request.args.get('page', 1, type=int)
     per_page = 8
