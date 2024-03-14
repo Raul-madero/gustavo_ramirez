@@ -1,7 +1,5 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, String, ForeignKey, Integer, BOOLEAN
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, String, Integer, BOOLEAN
+from sqlalchemy.orm import declarative_base
 import pymysql
 pymysql.install_as_MySQLdb()
 from db import db
