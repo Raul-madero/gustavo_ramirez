@@ -1,17 +1,10 @@
 from flask import jsonify, request
-from db import app, db   
+from app.app import app, db   
 from models import Clientes
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 
-@app.route('/api/clientes', methods=['GET', 'POST'])
-def get_add_clientes():
-    if request.method == 'POST':
-        cliente = request.get_json()
-        nuevo_cliente = Clientes(razonsocial=cliente['razonsocial'], rfc=cliente['rfc'], contacto=cliente['contacto'], girocomercial=cliente['giroComercial'])
-        db.session.add(nuevo_cliente)
-        db.session.commit()
-        return jsonify(cliente), 201
+@app.route('/api/clientes', methods=['GET'])
+def get_clientes():
     page = request.args.get('page', 1, type=int)
     per_page = 8
     search_term = request.args.get('search', '', type=str)
@@ -19,7 +12,7 @@ def get_add_clientes():
         (Clientes.razonsocial.ilike(f'%{search_term}%') |
         Clientes.rfc.ilike(f'%{search_term}%'))
         ).paginate(page=page, per_page=per_page))
-    lista = [{'id': cliente.id, 'razonsocial': cliente.razonsocial, 'rfc': cliente.rfc, 'contacto': cliente.contacto, 'girocomercial': cliente.girocomercial} for cliente in clientes_pagination]
+    lista = [{'id': cliente.id, 'razonsocial': cliente.razonsocial, 'rfc': cliente.rfc, 'contacto': cliente.contacto, 'girocomercial': cliente.girocomercial, 'idcolaborador': cliente.idcolaborador} for cliente in clientes_pagination]
     return jsonify({'clientes': lista, 
                     'total_pages': clientes_pagination.pages,
                     'current_page': clientes_pagination.page,
@@ -44,6 +37,16 @@ def buscar_clientes(cliente_id):
         cliente.contacto = editar.contacto
         cliente.girocomercial = editar.girocomercial
         db.session.commit()
+
+@app.route('/api/clientes', methods=['POST'])
+def crear_cliente():
+    cliente = request.get_json()
+    
+    nuevo_cliente = Clientes(razonsocial=cliente['razonsocial'], rfc=cliente['rfc'], contacto=cliente['contacto'], girocomercial=cliente['giroComercial'], idcolaborador=cliente['colaboradorid'])
+    db.session.add(nuevo_cliente)
+    db.session.commit()
+    print(cliente)
+    return jsonify(cliente), 201
 
 migrate = Migrate(app, db)
 

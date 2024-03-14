@@ -11,7 +11,7 @@ const LayoutNosotros = () => {
                 <p>No pretendemos inventar formas mágicas para el cálculo de impuestos, más bien, el constante estudio de la legislación físcal es nuestra fortaleza para poder trabajar de la mano de nuestros clíentes para ayudarles a tener certidumbre y tranquilidad en el cumplimiento de las obligaciones fiscales vigentes.</p>
                 <p>Buscamos siempre la cercania con el cliente para dar respuestas no solo en el pago de impuestos, sino, en la operación general de sus actividades, en el entendido de que nos enfocaremos en las áreas contable, físcal y financiera para que ustedes solo se preocupen por la operación de la empresa.</p>
             </div>
-            <Link className="btn btn-outline-primary" href="/nosotros/equipo">Conoce a nuestro equipo</Link>
+            {/* <Link className="btn btn-outline-primary" href="/nosotros/equipo">Conoce a nuestro equipo</Link> */}
         </div>
     )
 }

@@ -11,7 +11,7 @@ export default function Home({children}) {
       <Descripciones/>
       <Resumen/>
       <ServiciosCards />
-      <Temas />
+      {/* <Temas /> */}
     </>
   )
 }
