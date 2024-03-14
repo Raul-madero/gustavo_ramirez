@@ -21,9 +21,12 @@ const ListaClientes = () => {
         dispatch(getClientes())
         setEliminado(true)
     }
+    console.log(clientes)
     useEffect(() => {
         dispatch(getClientes())
     }, [])
+    console.log(clientes, status)
+
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage)
         dispatch(pagination(newPage))
@@ -80,7 +83,7 @@ const ListaClientes = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {status === 'loading' ? (
+                    {/* {status === 'loading' ? (
                         <div className="spinner-border text-info" role="status">
                             <span className="visually-hidden">Loading...</span>
                         </div>
@@ -102,7 +105,7 @@ const ListaClientes = () => {
                                     </Button>
                                 </td>
                             </tr>
-                        ))}
+                        ))} */}
                         <Modal show={show} onHide={handleClose}>
                             <ModalHeader className="bg-warning" closeButton>
                                 <ModalTitle className="text-dark fw-bold">¿Eliminar a {selected.razonsocial}?</ModalTitle>
